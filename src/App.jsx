@@ -89,7 +89,9 @@ function App() {
       {/* Contenedor responsive */}
       <div className="flex flex-col lg:flex-row lg:space-x-4 mb-4 space-y-4 lg:space-y-0">
         <div className="flex flex-col">
-          <label htmlFor="monto" className="mb-1">Monto:</label>
+          <label htmlFor="monto" className="mb-1">
+            Monto:
+          </label>
           <input
             type="number"
             placeholder="Monto"
@@ -98,9 +100,11 @@ function App() {
             className="border p-2"
           />
         </div>
-        
+
         <div className="flex flex-col">
-          <label htmlFor="plazoEnDias" className="mb-1">Plazo en días:</label>
+          <label htmlFor="plazoEnDias" className="mb-1">
+            Plazo en días:
+          </label>
           <input
             type="number"
             placeholder="Plazo en días"
@@ -109,9 +113,11 @@ function App() {
             className="border p-2"
           />
         </div>
-  
+
         <div className="flex flex-col">
-          <label htmlFor="banco" className="mb-1">Banco:</label>
+          <label htmlFor="banco" className="mb-1">
+            Banco:
+          </label>
           <select
             value={banco}
             onChange={(e) => setBanco(e.target.value)}
@@ -125,7 +131,7 @@ function App() {
             ))}
           </select>
         </div>
-  
+
         {/* Botones en una sola fila en pantallas grandes */}
         <div className="flex flex-row space-x-2">
           <button
@@ -142,14 +148,12 @@ function App() {
           </button>
         </div>
       </div>
-  
+
       {/* Renderización de mensajes de error */}
-      {error && (
-        <pre className="text-red-500 whitespace-pre-line">{error}</pre>
-      )}
-  
+      {error && <pre className="text-red-500 whitespace-pre-line">{error}</pre>}
+
       {/* Renderización de tabla para "Todos" */}
-      {resultados && banco === "Todos" && (
+      {Array.isArray(resultados) && banco === "Todos" && (
         <table className="table-auto w-full border">
           <thead>
             <tr>
@@ -173,9 +177,9 @@ function App() {
           </tbody>
         </table>
       )}
-  
+
       {/* Renderización de mensaje para un banco específico */}
-      {resultados && banco !== "Todos" && (
+      {resultados && banco !== "Todos" && typeof resultados === "object" && (
         <div className="mt-4 p-4 border rounded bg-gray-100">
           <h2 className="text-lg font-bold mb-2">Resultado:</h2>
           <p>
@@ -198,7 +202,7 @@ function App() {
         </div>
       )}
     </div>
-  );  
+  );
 }
 
 export default App;
